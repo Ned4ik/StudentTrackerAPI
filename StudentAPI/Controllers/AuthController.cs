@@ -74,5 +74,47 @@ namespace StudentAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("FilterCourseStudent")]
+        public async Task<IActionResult> FilterCourseStudent(string courseId)
+        {
+            try
+            {
+                var result = await _rep.FilterCourseAsync(courseId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("FilterGroupStudent")]
+        public async Task<IActionResult> FilterGroupStudent(string groupId)
+        {
+            try
+            {
+                var result = await _rep.FilterGroupAsync(groupId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("FilterStudentStudent")]
+        public async Task<IActionResult> FilterStudentStudent(string email)
+        {
+            try
+            {
+                var result = await _rep.FilterStudentAsync(email);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

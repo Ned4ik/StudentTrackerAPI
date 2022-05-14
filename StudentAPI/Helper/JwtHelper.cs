@@ -134,6 +134,16 @@ namespace StudentAPI.Helper
         }
     }
 
+    public class CourseProfile : Profile
+    {
+        public CourseProfile()
+        {
+            CreateMap<Course, CourseDto>()
+                .ForMember(dest => dest.Id, source => source.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Name, source => source.MapFrom(src => src.Name));
+        }
+    }
+
     public class StudentLessonProfile : Profile
     {
         public StudentLessonProfile()
