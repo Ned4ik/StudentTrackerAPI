@@ -35,6 +35,7 @@ builder.Services.AddTransient<AuthRepository>();
 builder.Services.AddTransient<UniversityRepository>();
 builder.Services.AddTransient<ScheduleRepository>();
 builder.Services.AddTransient<LessonRepository>();
+builder.Services.AddTransient<SearchRepository>();
 
 builder.Services.AddDbContext<StudentDataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
