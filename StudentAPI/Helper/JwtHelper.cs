@@ -77,7 +77,8 @@ namespace StudentAPI.Helper
                .ForMember(dest => dest.Name, source => source.MapFrom(src => src.Name))
                .ForMember(dest => dest.Surname, source => source.MapFrom(src => src.Surname))
                .ForMember(dest => dest.Email, source => source.MapFrom(src => src.Email))
-               .ForMember(dest => dest.TimePass, source => source.MapFrom(src => src.TimePass));
+               .ForMember(dest => dest.TimePass, source => source.MapFrom(src => src.TimePass))
+               .ForMember(dest => dest.StudentCard, source => source.MapFrom(src => src.StudentCard));
         }
     }
 
@@ -97,8 +98,9 @@ namespace StudentAPI.Helper
         public UniversityProfile()
         {
             CreateMap<UniversityTracker, UniversityDto>()
-                .ForMember(dest => dest.Id, source => source.MapFrom(src => src.Id))
+               .ForMember(dest => dest.Id, source => source.MapFrom(src => src.Id))
                .ForMember(dest => dest.Visit, source => source.MapFrom(src => src.Visit))
+               .ForMember(dest => dest.visitDate, source => source.MapFrom(src => src.visitDate))
                .ForMember(dest => dest.StudentDto, source => source.MapFrom(src => src.Student));
         }
     }
@@ -129,6 +131,16 @@ namespace StudentAPI.Helper
         public GroupProfile()
         {
             CreateMap<Group, GroupDto>()
+                .ForMember(dest => dest.Id, source => source.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Name, source => source.MapFrom(src => src.Name));
+        }
+    }
+
+    public class CourseProfile : Profile
+    {
+        public CourseProfile()
+        {
+            CreateMap<Course, CourseDto>()
                 .ForMember(dest => dest.Id, source => source.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, source => source.MapFrom(src => src.Name));
         }

@@ -2,9 +2,9 @@
 {
     public class Lesson : BaseModel<Guid>
     {
+        //Инициализация таблицы Lesson
         public string Name { get; set; }
         public DateTime StartTime { get; set; }
-
         public Guid CourseId { get; set; }
         public Course Course { get; set; }
 

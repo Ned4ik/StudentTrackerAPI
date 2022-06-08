@@ -49,17 +49,17 @@ namespace StudentAPI.Data
                     db.Courses.Add(new Course()
                     {
                         Create = DateTime.Now,
-                        Name = "Math"
+                        Name = "Математика"
                     });
                     db.Courses.Add(new Course()
                     {
                         Create = DateTime.Now,
-                        Name = "Other languages"
+                        Name = "Иностранные языки"
                     });
                     db.Courses.Add(new Course()
                     {
                         Create = DateTime.Now,
-                        Name = "IT"
+                        Name = "Айти"
                     });
 
                     db.SaveChanges();
@@ -69,78 +69,200 @@ namespace StudentAPI.Data
                     db.Groups.Add(new Group()
                     {
                         Create = DateTime.Now,
-                        Name = "PD1"
+                        Name = "НБО2007"
                     });
                     db.SaveChanges();
                 }
                 if (!dbPerson.Users.Any())
                 {
-                    var bob = new Student()
+                    var eduard = new Student()
                     {
+                        // добавить ебанный студенчиский всем пидорам 
                         Id = Guid.NewGuid(),
                         Create = DateTime.Now,
-                        UserName = "Bob",
-                        Name = "Bob",
-                        Surname = "Bobov",
-                        Email = "bob@gmail.com",
+                        UserName = "Eduard",
+                        Name = "Эдуард Олегович",
+                        Surname = "Пахомов",
+                        Email = "eduard@misis.ru",
                         PhoneNumber = "1534567890",
-                        TimePass = 5,
-                        Group = db.Groups.FirstOrDefault(f => f.Name == "PD1"),
+                        TimePass = 0,
+                        StudentCard = "2100960",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
                     };
-                    var ernie = new Student()
+                    var aleksandra = new Student()
                     {
                         Id = Guid.NewGuid(),
                         Create = DateTime.Now,
-                        UserName = "Ernie",
-                        Name = "Ernie",
-                        Surname = "Tester",
-                        Email = "ernie@gmail.com",
+                        UserName = "Aleksandra",
+                        Name = "Александра Романовна",
+                        Surname = "Пахомова",
+                        Email = "aleksandra@misis.ru",
                         PhoneNumber = "1234567891",
-                        TimePass = 8,
-                        Group = db.Groups.FirstOrDefault(f => f.Name == "PD1"),
+                        TimePass = 0,
+                        StudentCard = "2100901",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
                     };
-                    var resultBob = dbPerson.CreateAsync(bob, "1234").Result;
-                    var resultErnie = dbPerson.CreateAsync(ernie, "1234").Result;
-
-                    if (resultBob.Succeeded)
-                    {
-                        resultBob = dbPerson.AddToRoleAsync(bob, "User").Result;
-                    }
-                    if (resultErnie.Succeeded)
-                    {
-                        resultErnie = dbPerson.AddToRoleAsync(ernie, "User").Result;
-                    }
-
-                    var Alex = new Teacher()
+                    var bohdan = new Student()
                     {
                         Id = Guid.NewGuid(),
                         Create = DateTime.Now,
-                        UserName = "Alex",
-                        Name = "Alex",
-                        Surname = "Alexiev",
-                        Email = "alexe@gmail.com",
+                        UserName = "Bohdan",
+                        Name = "Богдан Александрович",
+                        Surname = "Вознюк",
+                        Email = "bohdan@misis.ru",
+                        PhoneNumber = "1234567892",
+                        TimePass = 0,
+                        StudentCard = "2100992",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+                    var dmitriy = new Student()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Dmitriy",
+                        Name = "Дмитрий Владимирович",
+                        Surname = "Воронов",
+                        Email = "dmitriy@misis.ru",
+                        PhoneNumber = "1234567893",
+                        TimePass = 0,
+                        StudentCard = "2100973",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+
+                    //
+
+                    var maria = new Student()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Maria",
+                        Name = "Мария Анатолиевна",
+                        Surname = "Воронцова",
+                        Email = "maria@misis.ru",
+                        PhoneNumber = "1534567894",
+                        TimePass = 0,
+                        StudentCard = "2100914",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+                    var anna = new Student()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Anna",
+                        Name = "Анна Богдановна",
+                        Surname = "Богдак",
+                        Email = "anna@misis.ru",
+                        PhoneNumber = "1234567895",
+                        TimePass = 0,
+                        StudentCard = "2100985",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+                    var taras = new Student()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Taras",
+                        Name = "Тарас Борисович",
+                        Surname = "Левчук",
+                        Email = "taras@misis.ru",
+                        PhoneNumber = "1234567896",
+                        TimePass = 0,
+                        StudentCard = "2100936",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+                    var boris = new Student()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Boris",
+                        Name = "Борис Тарасович",
+                        Surname = "Щербак",
+                        Email = "boris@misis.ru",
+                        PhoneNumber = "1234567897",
+                        TimePass = 0,
+                        StudentCard = "2100957",
+                        Group = db.Groups.FirstOrDefault(f => f.Name == "НБО2007"),
+                    };
+
+
+
+
+
+                    var resultEduard = dbPerson.CreateAsync(eduard, "1234").Result;
+                    var resultAleksandra = dbPerson.CreateAsync(aleksandra, "1234").Result;
+                    var resultBohdan = dbPerson.CreateAsync(bohdan, "1234").Result;
+                    var resultDmitry = dbPerson.CreateAsync(dmitriy, "1234").Result;
+
+                    var resultMaria = dbPerson.CreateAsync(maria, "1234").Result;
+                    var resultAnna = dbPerson.CreateAsync(anna, "1234").Result;
+                    var resultTaras = dbPerson.CreateAsync(taras, "1234").Result;
+                    var resultBoris = dbPerson.CreateAsync(boris, "1234").Result;
+
+                    if (resultEduard.Succeeded)
+                    {
+                        resultEduard = dbPerson.AddToRoleAsync(eduard, "User").Result;
+                    }
+                    if (resultAleksandra.Succeeded)
+                    {
+                        resultAleksandra = dbPerson.AddToRoleAsync(aleksandra, "User").Result;
+                    }
+                    if (resultBohdan.Succeeded)
+                    {
+                        resultBohdan = dbPerson.AddToRoleAsync(bohdan, "User").Result;
+                    }
+                    if (resultDmitry.Succeeded)
+                    {
+                        resultDmitry = dbPerson.AddToRoleAsync(dmitriy, "User").Result;
+                    }
+                    // ----
+                    if (resultMaria.Succeeded)
+                    {
+                        resultMaria = dbPerson.AddToRoleAsync(maria, "User").Result;
+                    }
+                    if (resultAnna.Succeeded)
+                    {
+                        resultAnna = dbPerson.AddToRoleAsync(anna, "User").Result;
+                    }
+                    if (resultTaras.Succeeded)
+                    {
+                        resultTaras = dbPerson.AddToRoleAsync(taras, "User").Result;
+                    }
+                    if (resultBoris.Succeeded)
+                    {
+                        resultBoris = dbPerson.AddToRoleAsync(boris, "User").Result;
+                    }
+
+
+                    var kristina = new Teacher()
+                    {
+                        Id = Guid.NewGuid(),
+                        Create = DateTime.Now,
+                        UserName = "Kristina",
+                        Name = "Кристина",
+                        Surname = "Пахомова",
+                        Email = "kristina@misis.ru",
                         PhoneNumber = "1234577891",
                     };
-                    var William = new Teacher()
+                    var igor = new Teacher()
                     {
                         Id = Guid.NewGuid(),
                         Create = DateTime.Now,
-                        UserName = "William",
-                        Name = "William",
-                        Surname = "Williamser",
-                        Email = "william@gmail.com",
+                        UserName = "Igor",
+                        Name = "Игорь",
+                        Surname = "Воронов",
+                        Email = "igor@misis.ru",
                         PhoneNumber = "1239567891",
                     };
-                    var resultAlex = dbPerson.CreateAsync(Alex, "1234").Result;
-                    var resultWilliam = dbPerson.CreateAsync(William, "1234").Result;
+                    var resultKristina = dbPerson.CreateAsync(kristina, "1234").Result;
+                    var resultIgor = dbPerson.CreateAsync(igor, "1234").Result;
 
-                    if (resultAlex.Succeeded)
+                    if (resultKristina.Succeeded)
                     {
-                        resultAlex = dbPerson.AddToRoleAsync(Alex, "User").Result;
+                        resultKristina = dbPerson.AddToRoleAsync(kristina, "User").Result;
                     }
-                    if (resultWilliam.Succeeded)
+                    if (resultIgor.Succeeded)
                     {
-                        resultWilliam = dbPerson.AddToRoleAsync(William, "User").Result;
+                        resultIgor = dbPerson.AddToRoleAsync(igor, "User").Result;
                     }
                 }
                 if (!db.UniversityTrackers.Any())
@@ -148,82 +270,120 @@ namespace StudentAPI.Data
                     db.UniversityTrackers.Add(new UniversityTracker() { 
                         Create = DateTime.Now,
                         Visit = false,
-                        Student = dbPerson.FindByEmailAsync("bob@gmail.com").Result as Student,
+                        Student = dbPerson.FindByEmailAsync("eduard@misis.ru").Result as Student,
                     });
                     db.UniversityTrackers.Add(new UniversityTracker()
                     {
                         Create = DateTime.Now,
                         Visit = false,
-                        Student = dbPerson.FindByEmailAsync("ernie@gmail.com").Result as Student,
+                        Student = dbPerson.FindByEmailAsync("aleksandra@misis.ru").Result as Student,
+                    });
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("bohdan@misis.ru").Result as Student,
+                    });
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("dmitriy@misis.ru").Result as Student,
+                    });
+
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("maria@misis.ru").Result as Student,
+                    });
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("anna@misis.ru").Result as Student,
+                    });
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("taras@misis.ru").Result as Student,
+                    });
+                    db.UniversityTrackers.Add(new UniversityTracker()
+                    {
+                        Create = DateTime.Now,
+                        Visit = false,
+                        Student = dbPerson.FindByEmailAsync("boris@misis.ru").Result as Student,
                     });
                     db.SaveChanges();
                 }
+                //End today Here 
                 if (!db.Lessons.Any())
                 {
                     db.Lessons.Add(new Lesson()
                     {
-                        Name = "Base math",
+                        Name = "Высшая математика",
                         StartTime = DateTime.Now,
                         Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),           
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Математика"),           
+                    });
+                    db.Lessons.Add(new Lesson()
+                    { 
+                        Name = "Мат анализ",
+                        StartTime = DateTime.Now,
+                        Create = DateTime.Now,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Математика"),
                     });
                     db.Lessons.Add(new Lesson()
                     {
-                        Name = "Middle math",
+                        Name = "Алгебра",
                         StartTime = DateTime.Now,
                         Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),
-                    });
-                    db.Lessons.Add(new Lesson()
-                    {
-                        Name = "High math",
-                        StartTime = DateTime.Now,
-                        Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),
-                    });
-
-                    db.Lessons.Add(new Lesson()
-                    {
-                        Name = "Other 1",
-                        StartTime = DateTime.Now,
-                        Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Other languages"),
-                    });
-                    db.Lessons.Add(new Lesson()
-                    {
-                        Name = "Other 2",
-                        StartTime = DateTime.Now,
-                        Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Other languages"),
-                    });
-                    db.Lessons.Add(new Lesson()
-                    {
-                        Name = "Other 3",
-                        StartTime = DateTime.Now,
-                        Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Other languages"),
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Математика"),
                     });
 
                     db.Lessons.Add(new Lesson()
                     {
-                        Name = "CSHARP",
+                        Name = "Английский язык",
                         StartTime = DateTime.Now,
                         Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "IT"),
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Иностранные языки"),
                     });
                     db.Lessons.Add(new Lesson()
                     {
-                        Name = "C++",
+                        Name = "Французский язык",
                         StartTime = DateTime.Now,
                         Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "IT"),
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Иностранные языки"),
                     });
                     db.Lessons.Add(new Lesson()
                     {
-                        Name = "REACT",
+                        Name = "Арабский язык",
                         StartTime = DateTime.Now,
                         Create = DateTime.Now,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "IT"),
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Иностранные языки"),
+                    });
+
+                    db.Lessons.Add(new Lesson()
+                    {
+                        Name = "Програмирование на языке С++",
+                        StartTime = DateTime.Now,
+                        Create = DateTime.Now,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Айти"),
+                    });
+                    db.Lessons.Add(new Lesson()
+                    {
+                        Name = "Введение Базы Данных",
+                        StartTime = DateTime.Now,
+                        Create = DateTime.Now,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Айти"),
+                    });
+                    db.Lessons.Add(new Lesson()
+                    {
+                        Name = "React для чайников",
+                        StartTime = DateTime.Now,
+                        Create = DateTime.Now,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Айти"),
                     });
 
                     db.SaveChanges();
@@ -233,24 +393,18 @@ namespace StudentAPI.Data
                     db.Schedules.Add(new Schedule()
                     {
                         Create = DateTime.Now,
-                        Date = new DateTime(2022, 5, 10),              
+                        Date = new DateTime(2022, 5, 20),              
                     });
                     db.Schedules.Add(new Schedule()
                     {
                         Create = DateTime.Now,
-                        Date = new DateTime(2022, 5, 12),
+                        Date = new DateTime(2022, 5, 21),
                     });
                     db.Schedules.Add(new Schedule()
                     {
                         Create = DateTime.Now,
-                        Date = new DateTime(2022, 5, 14),
+                        Date = new DateTime(2022, 5, 22),
                     });
-                    db.Schedules.Add(new Schedule()
-                    {
-                        Create = DateTime.Now,
-                        Date = new DateTime(2022, 5, 16),
-                    });
-
                     db.SaveChanges();
                 }
                 if (!db.ScheduleCourses.Any())
@@ -258,57 +412,95 @@ namespace StudentAPI.Data
                     db.ScheduleCourses.Add(new ScheduleCourse()
                     {
                         Create = DateTime.Now,
-                        Teacher = dbPerson.FindByEmailAsync("alexe@gmail.com").Result as Teacher,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),
-                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 10),
+                        Teacher = dbPerson.FindByEmailAsync("kristina@misis.ru").Result as Teacher,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Математика"),
+                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 20),
                     });
                     db.ScheduleCourses.Add(new ScheduleCourse()
                     {
                         Create = DateTime.Now,
-                        Teacher = dbPerson.FindByEmailAsync("alexe@gmail.com").Result as Teacher,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "IT"),
-                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 10),
+                        Teacher = dbPerson.FindByEmailAsync("kristina@misis.ru").Result as Teacher,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Иностранные языки"),
+                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 21),
                     });
 
                     db.ScheduleCourses.Add(new ScheduleCourse()
                     {
                         Create = DateTime.Now,
-                        Teacher = dbPerson.FindByEmailAsync("william@gmail.com").Result as Teacher,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),
-                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 12),
-                    });
-                    db.ScheduleCourses.Add(new ScheduleCourse()
-                    {
-                        Create = DateTime.Now,
-                        Teacher = dbPerson.FindByEmailAsync("william@gmail.com").Result as Teacher,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "IT"),
-                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 12),
-                    });
-                    db.ScheduleCourses.Add(new ScheduleCourse()
-                    {
-                        Create = DateTime.Now,
-                        Teacher = dbPerson.FindByEmailAsync("william@gmail.com").Result as Teacher,
-                        Course = db.Courses.FirstOrDefault(f => f.Name == "Math"),
-                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 12),
+                        Teacher = dbPerson.FindByEmailAsync("kristina@misis.ru").Result as Teacher,
+                        Course = db.Courses.FirstOrDefault(f => f.Name == "Айти"),
+                        Schedule = db.Schedules.FirstOrDefault(f => f.Date.Day == 22),
                     });
                     db.SaveChanges();
                 }
                 if (!db.StudentLessons.Any())
                 {
+
                     foreach (var item in db.Lessons.ToList())
-                    {
+                    { 
                         db.StudentLessons.Add(new StudentLesson()
                         {
                             Create = DateTime.Now,
                             LessonVisit = false,
-                            Student = dbPerson.FindByEmailAsync("bob@gmail.com").Result as Student,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("eduard@misis.ru").Result as Student,
                             Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
                         });
                         db.StudentLessons.Add(new StudentLesson()
                         {
                             Create = DateTime.Now,
                             LessonVisit = false,
-                            Student = dbPerson.FindByEmailAsync("ernie@gmail.com").Result as Student,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("aleksandra@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("bohdan@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("dmitriy@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("maria@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("anna@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("taras@misis.ru").Result as Student,
+                            Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
+                        });
+                        db.StudentLessons.Add(new StudentLesson()
+                        {
+                            Create = DateTime.Now,
+                            LessonVisit = false,
+                            DateLose = DateTime.Now,
+                            Student = dbPerson.FindByEmailAsync("boris@misis.ru").Result as Student,
                             Lesson = db.Lessons.FirstOrDefault(f => f.Name == item.Name),
                         });
                     }

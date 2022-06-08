@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using StudentAPI.Data;
+using StudentAPI.Dto;
+using StudentAPI.Entities;
 using StudentAPI.Entities.IdentityEntities;
 using StudentAPI.Helper;
 
@@ -10,12 +14,14 @@ namespace StudentAPI.Repositories
         private readonly UserManager<Person> _persons;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly StudentDataContext _db;
 
-        public AuthRepository(UserManager<Person> persons, IMapper mapper, IConfiguration configuration)
+        public AuthRepository(UserManager<Person> persons, IMapper mapper, IConfiguration configuration, StudentDataContext db)
         {
             _persons = persons;
             _mapper = mapper;
             _configuration = configuration;
+            _db = db;
         }
         public async Task<AuthorizateResponse<TDto>> Login<TEntity, TDto>(string email, string password) where TEntity : Person
         {
@@ -45,20 +51,51 @@ namespace StudentAPI.Repositories
             return (findUser as TEntity).ToDto<TEntity, TDto>(_mapper);
         }
 
-        public async Task FilterAsync(string lessonType)
+        public async Task<IEnumerable<FilterCourse>> FilterCourseAsync(string courseId)
         {
-            if (lessonType == "lesson")
+            return _db.Students.Select(s => new FilterCourse()
             {
-                
+                StudentDto = s.ToDto<Student, StudentDto>(_mapper),
+                FilterCourseLessons = _db.StudentLessons.Include(i => i.Student).Include(i => i.Lesson).ThenInclude(i => i.Course).Where(f => f.Student.Id == s.Id && f.Lesson.Course.Id == Guid.Parse(courseId)).Select(ss => new FilterCourseLessons()
+                {
+                    LessonDto = ss.Lesson.ToDto<Lesson, LessonDto>(_mapper),
+                    LessonVisit = ss.LessonVisit,
+                }).ToList(),
+
+            });
+        }
+
+        public async Task<IEnumerable<FilterCourse>> FilterGroupAsync(string groupId)
+        {
+            return _db.Students.Include(i => i.Group).Select(s => new FilterCourse()
+            {
+                StudentDto = s.ToDto<Student, StudentDto>(_mapper),
+                FilterCourseLessons = _db.StudentLessons.Include(i => i.Student).Include(i => i.Lesson).ThenInclude(i => i.Course).Where(f => f.Student.Id == s.Id && f.Student.Group.Id == Guid.Parse(groupId)).Select(ss => new FilterCourseLessons()
+                {
+                    LessonDto = ss.Lesson.ToDto<Lesson, LessonDto>(_mapper),
+                    LessonVisit = ss.LessonVisit,
+                }).ToList(),
+
+            });
+        }
+
+        public async Task<FilterCourse> FilterStudentAsync(string email)
+        {
+            var findUser = await _persons.FindByEmailAsync(email) as Student;
+            if (findUser is null)
+            {
+                throw new Exception("Student not found");
             }
-            else if(lessonType == "course")
-            {
 
-            }else if(lessonType == "group")
+            return new FilterCourse()
             {
-
-            }throw new Exception("filter doesen`t work");
-             
+                StudentDto = _db.Students.Include(i => i.Group).FirstOrDefault(f => f.Id == findUser.Id).ToDto<Student, StudentDto>(_mapper),
+                FilterCourseLessons = _db.StudentLessons.Include(i => i.Student).Include(i => i.Lesson).ThenInclude(i => i.Course).Where(f => f.Student.Id == findUser.Id).Select(ss => new FilterCourseLessons()
+                {
+                    LessonDto = ss.Lesson.ToDto<Lesson, LessonDto>(_mapper),
+                    LessonVisit = ss.LessonVisit,
+                }).ToList(),
+            };
         }
     }
 }

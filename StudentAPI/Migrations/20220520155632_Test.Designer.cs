@@ -12,7 +12,7 @@ using StudentAPI.Data;
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDataContext))]
-    [Migration("20220513141657_Test")]
+    [Migration("20220520155632_Test")]
     partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -391,6 +391,9 @@ namespace StudentAPI.Migrations
                     b.Property<bool>("Visit")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("visitDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StudentId");
@@ -404,6 +407,10 @@ namespace StudentAPI.Migrations
 
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StudentCard")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TimePass")
                         .HasColumnType("int");
