@@ -58,17 +58,6 @@ namespace StudentAPI.Repositories
             }
 
             return _db.StudentLessons.Include(s => s.Student).Include(l => l.Lesson).Where(w => w.Student.Id == findStudent.Id).ToList().ToListDto<StudentLesson, StudentLessonDto>(_mapper);
-            //var result = new List<StudentLessonDto>();
-            //foreach (var stlesson in _db.StudentLessons.Include(i => i.Student).ThenInclude(i => i.Group).Include(i => i.Lesson).Where(w => w.Lesson.Id == Guid.Parse(Id)).ToList())
-            //{
-            //    //result.Add(new StudentLessonDto()
-            //    //{
-            //    //    StudentLessonDto = _db.StudentLessons.Include(i => i.Student).Include(i => i.Lesson).FirstOrDefault(w => w.Id == stlesson.Id).ToDto<StudentLesson, StudentLessonDto>(_mapper),
-            //    //    GroupDto = stlesson.Student.Group.ToDto<Group, GroupDto>(_mapper),
-            //    //});
-            //}
-
-            //return result;
         }
         public async Task<string> LessonChange(string Id, string email, bool lessonVisit)
         {
@@ -94,7 +83,7 @@ namespace StudentAPI.Repositories
                     _db.SaveChanges();
                     return "Change successfully";
                 }
-                findStudent.TimePass += 20;
+                findStudent.TimePass += 2;
                 findLesson.DateLose = DateTime.Now;
                 var result = await _persons.UpdateAsync(findStudent);
                 if (!result.Succeeded)

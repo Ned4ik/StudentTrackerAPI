@@ -389,6 +389,9 @@ namespace StudentAPI.Migrations
                     b.Property<bool>("Visit")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("visitDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StudentId");
@@ -402,6 +405,10 @@ namespace StudentAPI.Migrations
 
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StudentCard")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TimePass")
                         .HasColumnType("int");

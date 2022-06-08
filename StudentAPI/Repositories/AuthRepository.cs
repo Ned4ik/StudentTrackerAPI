@@ -87,7 +87,6 @@ namespace StudentAPI.Repositories
                 throw new Exception("Student not found");
             }
 
-            //return _db.Students.Include(i => i.Group).FirstOrDefault(f => f.Id == findUser.Id)
             return new FilterCourse()
             {
                 StudentDto = _db.Students.Include(i => i.Group).FirstOrDefault(f => f.Id == findUser.Id).ToDto<Student, StudentDto>(_mapper),

@@ -2,8 +2,9 @@
 {
     public class Schedule : BaseModel<Guid>
     {
-        public DateTime Date { get; set; }
+        //Инициализация таблицы Schedule
 
+        public DateTime Date { get; set; }
         public ICollection<ScheduleCourse> ScheduleCourses { get; set; }
     }
 }

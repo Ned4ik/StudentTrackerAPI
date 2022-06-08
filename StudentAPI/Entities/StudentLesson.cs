@@ -4,6 +4,8 @@ namespace StudentAPI.Entities
 {
     public class StudentLesson : BaseModel<Guid>
     {
+        //Инициализация таблицы StudentLesson
+
         public Guid StudentId { get; set; }
         public Student Student { get; set; }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudentAPI.Migrations
 {
-    public partial class init : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,6 +114,7 @@ namespace StudentAPI.Migrations
                     Create = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TimePass = table.Column<int>(type: "int", nullable: true),
+                    StudentCard = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -267,6 +268,7 @@ namespace StudentAPI.Migrations
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LessonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LessonVisit = table.Column<bool>(type: "bit", nullable: false),
+                    DateLose = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Create = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -292,6 +294,7 @@ namespace StudentAPI.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Visit = table.Column<bool>(type: "bit", nullable: false),
+                    visitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Create = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

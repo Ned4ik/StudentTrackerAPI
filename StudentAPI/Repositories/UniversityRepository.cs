@@ -37,6 +37,7 @@ namespace StudentAPI.Repositories
 
             var findTracker = _db.UniversityTrackers.Include(f => f.Student).FirstOrDefault(f => f.Student.Id == findUser.Id);
             findTracker.Visit = visit;
+            findTracker.visitDate = DateTime.Now;
             _db.UniversityTrackers.Update(findTracker);
             _db.SaveChanges();
             return findTracker.ToDto<UniversityTracker, UniversityDto>(_mapper);
